@@ -1,10 +1,13 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <LiquidCrystal.h>
  
 #define ONE_WIRE_BUS 2
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
+
+LiquidCrystal lcd(12, 11, 7, 6, 5, 4);
 
 int podiPin = A0;
 int heaterPin = 3;
@@ -14,6 +17,9 @@ void setup() {
   Serial.begin(9600);
   pinMode(13, OUTPUT);
   sensors.begin();
+
+  lcd.begin(16, 2);
+  lcd.print("hello, world!");
 }
 
 void loop() {
